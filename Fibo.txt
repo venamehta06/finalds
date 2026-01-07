@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int a[10], n, i, key;
+    int f2 = 0, f1 = 1, f = f1 + f2, o = -1;
+
+    scanf("%d", &n);
+
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    scanf("%d", &key);
+
+    while(f < n) {
+        f2 = f1;
+        f1 = f;
+        f  = f1 + f2;
+    }
+
+    while(f > 1) {
+        i = o + f2;
+
+        if(a[i] < key) {
+            f  = f1;
+            f1 = f2;
+            f2 = f - f1;
+            o  = i;
+        }
+        else if(a[i] > key) {
+            f  = f2;
+            f1 = f1 - f2;
+            f2 = f - f1;
+        }
+        else {
+            printf("Found");
+            return 0;
+        }
+    }
+
+    printf("Not Found");
+    return 0;
+}

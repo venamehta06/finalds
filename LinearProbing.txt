@@ -1,0 +1,30 @@
+#include <stdio.h>
+#define SIZE 10
+
+int table[SIZE];
+
+int hash(int key) {
+    return key % SIZE;
+}
+
+void insert(int key) {
+    int i = hash(key);
+    while (table[i] != 0)      // linear probing
+        i = (i + 1) % SIZE;
+    table[i] = key;
+}
+
+void display() {
+    for (int i = 0; i < SIZE; i++)
+        printf("%d -> %d\n", i, table[i]);
+}
+
+int main() {
+    insert(23);
+    insert(43);
+    insert(13);
+    insert(27);
+
+    display();
+    return 0;
+}
